@@ -31,10 +31,6 @@ class Postagem {
       throw new Exception('Não foi encontrado nenhum registro');
     } else {
       $resultado->comentarios = Comentario::selecionarComentarios($resultado->id);
-      
-      if (!$resultado->comentarios) {
-        $resultado->comentarios = 'Não existe nenhum comentário para essa postagem!';
-      }
     }
     return $resultado;
   }

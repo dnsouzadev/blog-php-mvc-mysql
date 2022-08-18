@@ -5,6 +5,19 @@
     </header>
 
     <p>{{conteudo}}</p>
+
+    <br>
+    <hr>
+    <br>
+    {% if comentarios == false %}
+      <p>Não existe nenhum comentário para essa postagem!</p>
+    {% else %}
+      {% for comentario in comentarios %}
+      <h3>{{comentario.nome}}</h3>
+      <p>{{comentario.comentario}}</p>
+      <br>
+      {%  endfor %}
+    {% endif %}
   </article>
 
 </section>
