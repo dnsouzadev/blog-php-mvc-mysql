@@ -2,7 +2,7 @@
 
 class Postagem {
   public static function selecionarTodos() {
-    $con = Connection::getConn();
+    $con = Connect::getConn();
 
     $sql = "SELECT * FROM postagem ORDER BY id DESC";
     $sql = $con->prepare($sql);
@@ -18,14 +18,24 @@ class Postagem {
   }
 
   public static function selecionarPorId($idPost) {
-    $con = Connection::getConn();
+    $con = Connect::getConn();
 
     $sql = "SELECT * FROM postagem WHERE id = :id";
     $sql = $con->prepare($sql);
     $sql->bindValue(':id', $idPost, PDO::PARAM_INT);
     $sql->execute();
+
     $resultado = $sql->fetchObject('Postagem');
 
-    return !empty($resultado) ? $resultado : throw new Exception('Não foi encontrado nenhum registro');
+    if (!$resultado) {
+      throw new Exception('Não foi encontrado nenhum registro');
+    } else {
+      $resultado->comentarios = Comentario::selecionarComentarios($resultado->id);
+      
+      if (!$resultado->comentarios) {
+        $resultado->comentarios = 'Não existe nenhum comentário para essa postagem!';
+      }
+    }
+    return $resultado;
   }
 }

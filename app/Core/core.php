@@ -9,8 +9,7 @@ class Core {
     if(!class_exists($controller)) {
       $controller = 'ErroController';
     }
-
-    $id = isset($urlget['id']) && $urlget['id'] != null ? $urlget['id'] : '0';
+    $id = isset($urlget['id']) && $urlget['id'] != null ? $urlget['id'] : 0;
 
     call_user_func(array(new $controller, $acao), array('id' => $id));
   }

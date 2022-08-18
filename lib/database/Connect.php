@@ -1,6 +1,6 @@
 <?php
 
-abstract class Connection {
+abstract class Connect {
   
   private static $conn;
   
