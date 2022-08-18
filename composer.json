@@ -1,0 +1,18 @@
+{
+    "name": "dsoouza-dev/blog",
+    "description": "blog em php,mvc, mysql",
+    "autoload": {
+        "psr-4": {
+            "DsoouzaDev\\Blog\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "daniel souza",
+            "email": "workdndsza@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.4"
+    }
+}
