@@ -2,7 +2,7 @@
 
 class Core {
   public function start($urlget) {
-    $acao = 'index';
+    $acao = isset($urlget['metodo']) ? $urlget['metodo'] : 'index';
 
     $controller = !isset($urlget['pagina']) ? 'HomeController' : ucfirst($urlget['pagina'].'Controller');
 
