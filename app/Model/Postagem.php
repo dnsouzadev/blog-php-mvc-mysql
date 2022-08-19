@@ -53,4 +53,36 @@ class Postagem {
     $resultado = $sql->fetchObject('Postagem');
     return true;
   }
+
+  public static function update($dados) {
+    if ($dados == null) {
+      return false;
+    }
+
+    $con = Connect::getConn();
+    $sql = "UPDATE postagem SET titulo = :titulo, conteudo = :conteudo WHERE id = :id";
+    $sql = $con->prepare($sql);
+    $sql->bindValue(':titulo', $dados['titulo']);
+    $sql->bindValue(':conteudo', $dados['conteudo']);
+    $sql->bindValue(':id', $dados['id']);
+    $sql->execute();
+
+    $resultado = $sql->fetchObject('Postagem');
+  }
+
+  public static function delete($id) {
+
+    if ($id == null) {
+      return false;
+    }
+
+    $con = Connect::getConn();
+
+    $sql = "DELETE FROM postagem WHERE id = :id";
+    $sql = $con->prepare($sql);
+    $sql->bindValue(':id', $id);
+    $sql->execute();
+
+    $resultado = $sql->fetchObject('Postagem');
+  }
 }

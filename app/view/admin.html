@@ -10,16 +10,16 @@
   <tr>
     <th>ID</th>
     <th>TÍTULO</th>
-    <th>ALTERAÇÃO</th>
-    <th>DELEÇÃO</th>
+    <th>ALTERAR</th>
+    <th>DELETAR</th>
   </tr>
 
   {% for postagem in postagens %}
   <tr>
     <th>{{postagem.id}}</th>
     <th>{{postagem.titulo}}</th>
-    <th>ALTERAÇÃO</th>
-    <th>DELEÇÃO</th>
+    <th><a style=" text-decoration: none; color: black;" href="http://localhost/blog/?pagina=admin&metodo=change&id={{postagem.id}}">ALTERAÇÃO</a></th>
+    <th><a style=" text-decoration: none; color: black;" href="http://localhost/blog/?pagina=admin&metodo=delete&id={{postagem.id}}">APAGAR</a></th>
   </tr>
   {% endfor %}
 </table>
