@@ -34,4 +34,23 @@ class Postagem {
     }
     return $resultado;
   }
+
+  public static function insert($dadosPost) {
+    $con = Connect::getConn();
+
+    $dados = $dadosPost['conteudo'] && $dadosPost['titulo'] ? $dadosPost : null;
+
+    if ($dados == null) {
+      return false;
+    }
+
+    $sql = "INSERT INTO postagem (titulo, conteudo) VALUES (:titulo, :conteudo)";
+    $sql = $con->prepare($sql);
+    $sql->bindValue(':titulo', $dados['titulo']);
+    $sql->bindValue(':conteudo', $dados['conteudo']);
+    $sql->execute();
+
+    $resultado = $sql->fetchObject('Postagem');
+    return true;
+  }
 }
